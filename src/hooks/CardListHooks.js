@@ -112,7 +112,7 @@ export const useRemoveCard = () => {
   const removeCard = (id) => {
     dispatch(act.removeCard(id))
   }
-  return [removeCard]
+  return removeCard
 }
 
 export const useAllCardLabelValues = (labelId) => {

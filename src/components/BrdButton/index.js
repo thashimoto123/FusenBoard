@@ -4,13 +4,13 @@ import styles from './style.module.scss'
 
 const cx = cn.bind(styles)
 
-export default ({ className, children, primary, basic, mini, onClick = () => {}, onFocus = () => {} }) => {
+export default ({ className, children, primary, basic, mini, negative, onClick = () => {}, onFocus = () => {} }) => {
   let classname = cn(
     className,
     cx(
       className,
       'BrdButton',
-      { primary, mini, basic }
+      { primary, mini, basic, negative }
     )
   )
   return (

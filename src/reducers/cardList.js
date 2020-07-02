@@ -36,9 +36,11 @@ export default function(state = initialState, action) {
     case Actions.REMOVE_CARD:
       return (() => {
         const index = state.cardList.findIndex((card) => card.id === action.id)
+        let newCardList = [...state.cardList]
+        newCardList.splice(index, 1)
         return {
           ...state,
-          cardList: [...state.cardList].slice(index, 1)
+          cardList: newCardList
         }
       })()
 

@@ -1,0 +1,33 @@
+.BrdInput {
+  padding: 0.3em;
+  width: 100%;
+  border: none;
+  border-radius: 3px;
+  background-color: #fff;
+  border: 1px solid transparent;
+  &:focus {
+    outline: none;
+    border-color: #85b7d9;
+  }
+  &.mini {
+    font-size: 0.78em;
+    padding: 0.37em;
+  }
+  &.border {
+    border-color: rgba(34,36,38,.15);
+    &:focus {
+      border-color: #85b7d9;
+    }
+  }
+  &.basic {
+    background: transparent none!important;
+    color: rgba(0,0,0,.6)!important;
+    font-weight: 400;
+    border-radius: .28571429rem;
+    text-transform: none;
+    text-shadow: none!important;
+    -webkit-box-shadow: 0 0 0 1px rgba(34,36,38,.15) inset;
+    box-shadow: 0 0 0 1px rgba(34,36,38,.15) inset;
+  }
+
+}

@@ -1,0 +1,8 @@
+export { setModalMap } from './Modal'
+export { default as Modal } from './Modal' 
+export { openModal, closeModal} from './actions'
+export { default as useOpenModal} from './useOpenModal'
+export { default as useCloseModal} from './useCloseModal'
+export { default as useCloseAllModal} from './useCloseAllModal'
+export { default as modalReducer } from './reducer'
+export { default as useModal } from './useModal'

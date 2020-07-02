@@ -1,0 +1,19 @@
+.BrdMenuItem {
+  padding: 8px 10px;
+  font-size: 14px;
+  font-weight: normal;
+  cursor: pointer;
+  &:hover,
+  &:focus,
+  &.active {
+    background-color: rgb(243, 244, 245);
+  }
+  &.header {
+    font-weight: 700;
+    cursor: normal;
+    &:hover,
+    &:focus {
+      background-color: transparent;
+    }
+  }
+}

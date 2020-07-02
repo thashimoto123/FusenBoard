@@ -1,0 +1,20 @@
+.BrdForm {
+  position: relative;
+  z-index: 1;
+}
+.inner {
+  width: 300px;
+  // max-height: 500px;
+  // overflow-y: auto;
+}
+.label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 8px;
+  font-size: 20px;
+  font-weight: bold;
+}
+.input-wrap {
+  margin-bottom: 30px;
+}

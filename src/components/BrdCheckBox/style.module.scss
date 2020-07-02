@@ -1,0 +1,47 @@
+.BrdCheckBox {
+  display: inline-block;
+  cursor: pointer;
+  input[type="checkbox"] {
+    position: absolute;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    opacity: 0;
+  }
+  .display {
+    position: relative;
+    padding-left: 17px;
+    min-height: 17px;
+    &:before {
+      content: "";
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 17px;
+      height: 17px;
+      border-radius: 2px;
+      border: 1px solid rgba(34, 36, 38, 0.15);
+    }
+    &:after {
+      font-family: 'fontello';
+      content: "\e800";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 17px;
+      height: 17px;
+      color: #000;
+      font-size: 12px;
+      text-align: center;
+      vertical-align: middle;
+      line-height: 17px;
+      opacity: 0;
+    }
+  }
+  input:checked + .display {
+    &:after {
+      opacity: 1;
+    }
+  }
+}

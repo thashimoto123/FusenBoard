@@ -1,0 +1,25 @@
+.BrdColorList {
+  padding: 10px;
+  background-color: #fff;
+  border-radius: 5px;
+  ul {
+    display: flex;
+    align-items: center;
+  }
+}
+
+.color-item {
+  position: relative;
+  margin-right: 15px;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  cursor: pointer;
+  &:last-child {
+    margin-right: 0;
+  }
+  &.active,
+  &:hover {
+    border: 2px solid #85b7d9;
+  }
+}

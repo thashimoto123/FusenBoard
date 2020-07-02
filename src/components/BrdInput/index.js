@@ -15,7 +15,8 @@ export default ({
   onChange = () => {}, 
   onFocus = () => {}, 
   onBlur = () => {},
-  type = 'text'
+  type = 'text',
+  readOnly
 }) => {
   const classname = cn(
     className,
@@ -26,6 +27,7 @@ export default ({
       basic
     })
   )
+  const readonly = readOnly ? 'readonly' : null
   return (
     <input 
       id={id}
@@ -36,6 +38,7 @@ export default ({
       onChange={onChange} 
       onFocus={onFocus}
       onBlur={onBlur}
+      readOnly={readonly}
     />
   )
 }

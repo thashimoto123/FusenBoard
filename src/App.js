@@ -1,7 +1,6 @@
 import React from 'react';
 import { Switch, Route } from 'react-router'
 import BrdBoardView from 'components/BrdBoardView'
-import BrdShareBoardView from 'components/BrdShareBoardView'
 import { setModalMap, useCloseAllModal } from 'modules/modal'
 
 const modalMap = [
@@ -21,6 +20,10 @@ const modalMap = [
   {
     id: 'BrdRoomInModal',
     children: []
+  },
+  {
+    id: 'BrdShareUrlModal',
+    children: []
   }
 ]
 
@@ -32,9 +35,8 @@ function App() {
 
   return (
     <Switch>
-      <Route path="/new" component={BrdShareBoardView} />
       <Route path="/room/:id" component={BrdBoardView} />
-      <Route path="/" component={BrdBoardView} />
+      <Route exact path="/" component={BrdBoardView} />
     </Switch>
   );
 }

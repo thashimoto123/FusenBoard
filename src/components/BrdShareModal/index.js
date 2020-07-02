@@ -11,6 +11,7 @@ import { useCardListOrigin } from 'hooks/CardListHooks'
 import { useColorList } from 'hooks/ColorListHooks'
 import { useLabelList } from 'hooks/LabelListHooks'
 import { usePush } from 'hooks/RouterHooks'
+import { useOpenModal } from 'modules/modal'
 
 const cx = cn.bind(styles)
 
@@ -19,6 +20,7 @@ export default () => {
   const [colors] = useColorList()
   const [labels] = useLabelList()
   const push = usePush()
+  const openModal = useOpenModal()
 
   const handlerClickButton = (password, passwordConfirmation) => {
     const name = shortid.generate()
@@ -34,6 +36,7 @@ export default () => {
         if (data.status === 'SUCCESS') {
           push(`/room/${data.data.name}`)
         }
+        openModal('BrdShareUrlModal')
       })
       .catch(error => console.error(error))
   }

@@ -5,12 +5,12 @@ import BrdButton from 'components/BrdButton'
 import BrdFormModalSaveButton from 'components/BrdFormModalSaveButton'
 import BrdFormModalRemoveButton from 'components/BrdFormModalRemoveButton'
 import classes from './style.module.scss'
-import { useCardFormColor, useCardFormValue } from 'hooks/CardFormHooks'
+import { useCardFormColorValue, useCardFormValue } from 'hooks/CardFormHooks'
 import { useCloseModal, useOpenModal } from 'modules/modal' 
 
 
 export default () => {
-  const [color] = useCardFormColor()
+  const color = useCardFormColorValue()
   const closeModal = useCloseModal()
   const openModal = useOpenModal()
   const cardData = useCardFormValue()

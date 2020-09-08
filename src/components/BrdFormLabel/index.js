@@ -12,7 +12,7 @@ const cx = cn.bind(styles)
 export default ({ label }) => {
   const { focused, bind: bindFocus } = useFocus()
   const [suggestions] = useSuggestions(label.id, label.value)
-  const [updateCardFormLabel] = useUpdateCardFormLabel()
+  const updateCardFormLabel = useUpdateCardFormLabel()
   const handleSelectSuggestion = (suggestion) => {
     updateCardFormLabel(label.id, suggestion)
   }

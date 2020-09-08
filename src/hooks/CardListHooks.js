@@ -11,14 +11,15 @@ export const useUpdateCardList = () => {
   }
   return updateCardList
 }
-export const useCardList = () => {
+export const useCardListValue = () => {
   const [labelList] = useLabelList()
   const [sort] = useCardSort()
   const [order] = useCardOrder()
   const cardList = useSelector(state => state.cardList.cardList)
+  let outputCardList = [...cardList];
   switch (sort.type) {
     case Sort.TEXT:
-      cardList.sort((a, b) => {
+      outputCardList.sort((a, b) => {
         let A = a.text.toUpperCase()
         let B = b.text.toUpperCase()
         if (order === Order.DESC) {
@@ -32,13 +33,17 @@ export const useCardList = () => {
       break
     case Sort.LABEL:
       const labelId = sort.value
-      cardList.forEach((card) => {
+      outputCardList = outputCardList.map((card) => {
         const label = card.labels.find(label => label.id === labelId)
         const labelName = labelList.find(label => label.id === labelId).name
         const labelValue = label ? label.value : ''
-        card.description = `${labelName}: ${labelValue}`
+        const description = `${labelName}: ${labelValue}`
+        return {
+          ...card,
+          description
+        }
       })
-      cardList.sort((a, b) => {
+      outputCardList.sort((a, b) => {
         let labelA = a.labels.find(label => label.id === labelId)
         let labelB = b.labels.find(label => label.id === labelId)
         if (order === Order.DESC) {
@@ -54,7 +59,7 @@ export const useCardList = () => {
       })
       break
     case Sort.COLOR:
-      cardList.sort((a, b) => {
+      outputCardList.sort((a, b) => {
         let colorA = a.color
         let colorB = b.color
         if (order === Order.DESC) {
@@ -67,21 +72,35 @@ export const useCardList = () => {
       })
       break
 
-    default: cardList.sort()
+    default: outputCardList.sort()
   }
+  return outputCardList
+}
+export const useCardList = () => {
+  const cardList = useCardListValue()
   const updateCardList = useUpdateCardList()
   return [cardList, updateCardList]
+}
+
+export const useCardListOriginValue = () => {
+  const cardList = useSelector(state => state.cardList.cardList)
+  return cardList
 }
 
 export const useCardListOrigin = () => {
-  const cardList = useSelector(state => state.cardList.cardList)
+  const cardList = useCardListOriginValue()
   const updateCardList = useUpdateCardList()
   return [cardList, updateCardList]
 }
 
-export const useCard = (id) => {
-  const dispatch = useDispatch()
+export const useCardValue = (id) => {
   const card = useSelector(state => state.cardList.cardList.find(card => card.id === id))
+  return card
+}
+
+export const useCard = (id) => {
+  const card = useCardValue()
+  const dispatch = useDispatch()
   const updateCard = (updateData) => {
     dispatch(act.updateCard({
       ...card,
@@ -126,7 +145,12 @@ export const useAllCardLabelValues = (labelId) => {
     value = label.value
     if (values.indexOf(value) === -1) values.push(value) 
   })
-  return [values]
+  return values
+}
+
+export const useCardSortValue = () => {
+  const sort = useSelector(state => state.cardList.sortBy)
+  return sort
 }
 
 export const useUpdateCardSort = () => {
@@ -134,14 +158,18 @@ export const useUpdateCardSort = () => {
   const updateSortBy = (type) => { 
     dispatch(act.updateSortBy(type)) 
   }
-  return [updateSortBy]
+  return updateSortBy
 }
 
 export const useCardSort = () => {
-  const sort = useSelector(state => state.cardList.sortBy)
-
-  const [updateSortBy] = useUpdateCardSort()
+  const sort = useCardSortValue()
+  const updateSortBy = useUpdateCardSort()
   return [sort, updateSortBy]
+}
+
+export const useCardOrderValue = () => {
+  const order = useSelector(state => state.cardList.orderBy)
+  return order
 }
 
 export const useUpdateCardOrder = ()  => {
@@ -149,11 +177,11 @@ export const useUpdateCardOrder = ()  => {
   const updateOrderBy = (type) => {
     dispatch(act.updateOrderBy(type))
   }
-  return [updateOrderBy]
+  return updateOrderBy
 }
 
 export const useCardOrder = () => {
-  const order = useSelector(state => state.cardList.orderBy)
-  const [updateOrderBy] = useUpdateCardOrder()
+  const order = useCardOrderValue()
+  const updateOrderBy = useUpdateCardOrder()
   return [order, updateOrderBy]
 }

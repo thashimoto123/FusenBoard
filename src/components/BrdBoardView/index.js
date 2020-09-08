@@ -8,7 +8,7 @@ import BrdRoomInModal from 'components/BrdRoomInModal'
 import BrdShareUrlModal from 'components/BrdShareUrlModal'
 import classes from './style.module.scss'
 import { useEffect } from 'react'
-import { useUpdateCardList, useCardList } from 'hooks/CardListHooks'
+import { useUpdateCardList, useCardListValue } from 'hooks/CardListHooks'
 import { useUpdateCardForm } from 'hooks/CardFormHooks'
 import { useUpdateColorList} from 'hooks/ColorListHooks'
 import { useUpdateLabels } from 'hooks/LabelListHooks'
@@ -18,9 +18,9 @@ import { useUserName } from 'hooks/ChannelHooks'
 import * as api from 'api'
 
 export default ({ match }) => {
-  const [cardList] = useCardList()
+  const cardList = useCardListValue()
   const openModal = useOpenModal()
-  const [updateCardForm] = useUpdateCardForm()
+  const updateCardForm = useUpdateCardForm()
   const closeAllModal = useCloseAllModal()
   const closeModal = useCloseModal()
   const updateCardList = useUpdateCardList()

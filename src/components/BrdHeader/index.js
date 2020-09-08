@@ -16,7 +16,7 @@ const cx = cn.bind(styles)
 
 export default ({match}) => {
   const openModal = useOpenModal()
-  const [initializeCardForm] = useInitializeCardForm()
+  const initializeCardForm = useInitializeCardForm()
   const initializeLabels = useInitializeLabels()
   const initializeColorList = useInitializeColorList()
   const updateCardList = useUpdateCardList()
